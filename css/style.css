@@ -10,7 +10,8 @@
     --gray-600: #F2F2F2;
     --gray-700: #BDBDBD;
     --orange: #F2994A;
-
+    --green: #104911;
+    --red: #E3170A;
 }
 
 body{
@@ -18,6 +19,94 @@ body{
     margin: 0 auto;
     padding: 4rem 1rem 0;
 }
+
+
+/* CSS para Chrome y Safari */
+.body::-webkit-scrollbar, select::-webkit-scrollbar {
+    width: 0.4em;
+    background-color: var(--white);
+}
+.body::-webkit-scrollbar-thumb, select::-webkit-scrollbar-thumb {
+    border-radius: 0.15em;
+    background-color: var(--gray-200);
+}
+
+/* CSS para Firefox */
+.body::-moz-scrollbar, select::-moz-scrollbar   {
+    width: 0.4em;
+    background-color: var(--white);
+}
+.body::-moz-scrollbar-thumb, select::-moz-scrollbar-thumb {
+    border-radius: 0.15em;
+    background-color: var(--gray-100);
+}
+
+/* CSS para Internet Explorer y Edge */
+.body::-ms-scrollbar, select::-ms-scrollbar {
+    width: 0.4em;
+    background-color: var(--white);
+}
+.body::-ms-scrollbar-thumb, select::-ms-scrollbar-thumb {
+    border-radius: 0.15em;
+    background-color: var(--gray-100);
+}
+
+.modal-error{
+    background: rgba(0, 0, 0, 0.1);
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 0vh;
+    width: 100vw;
+    z-index: 20;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    overflow: hidden;
+    pointer-events: none;
+    opacity: 0;
+    transition: all 0.5s;
+    transform-origin: bottom;
+}
+
+.modal-open{
+    display: flex;
+    height: 100vh;
+    opacity: 1;
+    pointer-events:all;
+}
+
+.modal-content{
+    display: flex;
+    flex-flow: column nowrap;
+    gap:1rem;
+    justify-content:center;
+    align-items:center;
+    width: 30%;
+    height: 30%;
+    background-color: var(--white);
+    border-radius: 0.75rem;
+    padding: 3rem;
+    position: relative;
+    transform: translateY(150vh);
+    transition: all 0.5s;
+    transition-delay: 0.2s;
+
+    font-weight: 600;
+    font-size: 1.1rem;
+    line-height: 1.4rem;
+    color: var(--gray-100);
+}
+
+.modal-content-animate{
+    transform: translateY(0vh);
+}
+
+.modal-content > p {
+    text-align: center;
+}
+
 
 header > .title{
     font-weight: 600;
@@ -75,13 +164,21 @@ fieldset > .title{
     padding: 1rem 0.9rem;
     margin-top: 0.4rem;
     margin-bottom: 1.2rem;
+    position: relative;
 }
+
+.input-icon-container-focus{
+    border: 1px solid var(--orange);
+}
+
+
+
 
 .material-icons-round {
     font-family: 'Material Icons Round';
     font-weight: normal;
     font-style: normal;
-    font-size: 24px;
+    font-size: 1.5rem;
     line-height: 1;
     letter-spacing: normal;
     text-transform: none;
@@ -93,12 +190,64 @@ fieldset > .title{
     -webkit-font-smoothing: antialiased;
     color: var(--gray-300);
     flex-grow: 0;
+    transform-origin: center;
 }
 
-.bg-color{
+.icon-color{
+    color: var(--orange);
+    transform: scale(1.1);
+    transition: all 0.5s ease;
+}
+
+.icon-valid{
+    color: var(--green);
+    padding: 2rem;
+    font-size: 4rem;
+    border:0.5rem solid var(--green);
+    border-radius: 200rem;
+}
+
+.icon-invalid{
+    color: var(--red);
+    padding: 2rem;
+    font-size: 4rem;
+    border:0.5rem solid var(--red);
+    border-radius: 200rem;
+}
+
+.icon-animate{
+    animation: zoom-in 0.1s;
+}
+
+@keyframes zoom-in{
+    0% { 
+        transform: scale(1);
+        color: var(--gray-300);    
+    }
+    50% { 
+        transform: scale(0.5);
+        color: var(--orange);
+    }
+    0% { 
+        transform: scale(1);
+        color: var(--gray-300);    
+    }
+}
+
+.icon-cart-item, .arrow_down-icon{
     background-color: var(--gray-500);
     border-radius: 0.25rem;
     cursor: pointer;
+    border: none;
+    height: 1.5rem;
+    width: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.arrow_down-icon-rotate{
+    transform: rotate(180deg); 
 }
 
 .input{
@@ -112,6 +261,10 @@ fieldset > .title{
     width: 100%;
 }
 
+.input:invalid::after {
+    display: none;
+}
+
 .input:focus, .input:active {
     border: none;
     outline: none;
@@ -119,6 +272,10 @@ fieldset > .title{
 
 .input::placeholder, .dicounted-option{
     color: var(--gray-300);
+}
+
+#country{
+    overflow-x:scroll;
 }
 
 .location-input{
@@ -131,6 +288,43 @@ fieldset > .title{
 .inputs-section{
     flex-grow: 1;
     width: calc(50% - 0.5rem);
+}
+
+.input-invalid{
+    border-color: var(--red);
+}
+
+.input-invalid-label{
+    color: var(--red);
+}
+
+.country{
+    position: absolute;
+    top: 105%;
+    left: 0;
+    width: 100%;
+    height: 0%;
+    z-index: 1;
+    border: none;
+    transition: all 0.5s;
+}
+
+.show-country{
+    height: 200%;
+    
+}
+
+option{
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 1.2rem;
+    color: var(--gray-100);
+    padding: 0.3rem 0.5rem;
+}
+
+option:checked{
+    background-color: var(--orange);
+    color: var(--gray-600); 
 }
 
 .label-checkbox{
@@ -154,6 +348,7 @@ fieldset > .title{
     cursor: pointer;
     overflow: hidden;
 }
+
 
 .checkbox::after {
     content: '';
@@ -198,7 +393,7 @@ fieldset > .title{
     opacity: 100%;
 }
 
-.submit-btn{
+.submit-btn, .close-modal-btn{
     align-self: flex-end;
     width: 10.5rem;
     height: 3.7rem;
@@ -310,6 +505,30 @@ fieldset > .title{
     border-radius: 0.75rem;
 }
 
+.quantity-text{
+    flex-grow: 1;
+    display: flex;
+    justify-content:center;
+    transform-origin: center;
+    color: var(--gray-100);
+}
+
+.quantity-text-animate-zero{
+    animation: zoom-out .5s linear;
+}
+
+@keyframes zoom-out{
+    0% { 
+        transform: scale(1);
+    }
+    50% { 
+        transform: scale(1.5);
+    }
+    0% { 
+        transform: scale(1);    
+    }
+}
+
 .total-cart{
     display: flex;
     flex-flow: column nowrap;
@@ -368,6 +587,11 @@ a.strong:hover{
         padding: 2rem 1rem 0;
     }
 
+    .modal-content{
+        width: 60vw;
+        height: 30%;
+    }
+
     .content{
         display: flex;
         flex-flow: column nowrap;
@@ -392,6 +616,24 @@ a.strong:hover{
 
 @media screen and (max-width: 420px) {
     
+    .modal-error{
+        align-items:flex-end;
+    }
+    
+    .modal-open{
+        display: flex;
+        height: 100vh;
+        opacity: 1;
+        pointer-events:all;
+    }
+    
+    .modal-content{
+        width: 100vw;
+        height: 50vh;
+    }
+
+    
+
     header > .title{
         font-size: 1.5rem;
         line-height: 1.8rem;

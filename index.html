@@ -12,12 +12,31 @@
   <link rel="stylesheet" href="css/style.css">
   <title>devChallenges | Checkout Page</title>
 </head>
-<body>
+<body class="body">
+  
+  <div class="modal-error modal-valid">
+    <div class="modal-content">
+      <span class="material-icons-round icon-valid">
+        thumb_up
+      </span>
+      <p>The information entered complies with the requirements 😀 !!!</p>
+    </div>
+  </div>
+
+  <div class="modal-error modal-invalid">
+    <div class="modal-content">
+      <span class="material-icons-round icon-invalid">
+        thumb_down_alt
+      </span>
+      <p>the information entered does not comply with the requirements 😕</p>
+    </div>
+  </div>
+
   <header>
     <h1 class="title">Checkout</h1>
   </header>
   <main class="content">
-    <form class="form">
+    <form class="form" novalidate>
       <fieldset class="contact-information">
         <legend class="title">Contact infomation</legend>
         <div class="inputs-container">
@@ -25,8 +44,8 @@
           <div class="input-icon-container">
             <span class="material-icons-round">
               email
-              </span>
-            <input type="email" id="e-mail" class="input" placeholder="Enter your email..." pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+            </span>
+            <input type="email" id="e-mail" class="input" placeholder="Enter your email..." >
           </div>
           <label for="phone" class="input-label">phone</label>
           <div class="input-icon-container">
@@ -44,9 +63,7 @@
           <label for="name" class="input-label">Full name</label>
           <div class="input-icon-container">
             <span class="material-icons-round">
-              <span class="material-icons-round">
                 account_circle
-                </span>
               </span>
             <input type="text" id="name" class="input" placeholder="Your full name..">
           </div>
@@ -70,9 +87,9 @@
               <div class="input-icon-container">
                 <span class="material-icons-round">
                   public
-                  </span>
-                <select name="country" id="country" class="input country" >
-                  <option class="dicounted-option" disabled selected value>Your country..</option>
+                </span>
+                <input type="text" id="country" class="input" placeholder="Your country.." readonly>
+                <select name="country" class="country" multiple>
                   <option value="Argentina">Argentina</option>
                   <option value="Brasil">Brasil</option>
                   <option value="Chile">Chile</option>
@@ -83,6 +100,9 @@
                   <option value="Uruguay">Uruguay</option>
                   <option value="Venezuela">Venezuela</option>
                 </select>
+                <button type="button" class="material-icons-round arrow_down-icon">
+                  keyboard_arrow_down
+                </button>
               </div>
             </div>
             <div class="inputs-section">
@@ -96,7 +116,7 @@
             </div>
           </div>
           <label for="save-information" class="input-label label-checkbox"> 
-            <input type="checkbox" class="checkbox" id="save-information" > <p> Save this information for next time</p>
+            <input type="checkbox" class="checkbox" id="save-information" checked> <p> Save this information for next time</p>
           </label>
         </div>
       </fieldset>
@@ -115,13 +135,13 @@
               </div>
             </div>
             <div class="quanty-controler">
-              <span class="material-icons-round bg-color">
+              <button class="material-icons-round icon-cart-item remove">
                 remove
-              </span>
+              </button>
               <p class="quantity-text">1</p>
-              <span class="material-icons-round bg-color">
+              <button class="material-icons-round icon-cart-item add">
                 add
-              </span>
+              </button>
             </div>
           </div>
         </div>
@@ -137,13 +157,13 @@
               </div>
             </div>
             <div class="quanty-controler">
-              <span class="material-icons-round bg-color">
+              <button class="material-icons-round icon-cart-item remove">
                 remove
-              </span>
+              </button>
               <p class="quantity-text">1</p>
-              <span class="material-icons-round bg-color">
+              <button class="material-icons-round icon-cart-item add">
                 add
-              </span>
+              </button>
             </div>
           </div>
         </div>
@@ -151,11 +171,11 @@
       <div class="total-cart">
         <div class="section-total">
           <p class="total-title">Shipping</p>
-          <p class="total-value price">19</p>
+          <p class="total-value price shipping">19</p>
         </div>
         <div class="section-total">
           <p class="total-title">Total</p>
-          <p class="total-value price">148.98</p>
+          <p class="total-value price total">148.98</p>
         </div>
       </div>
     </section>
@@ -163,6 +183,7 @@
   <footer class="footer">
     <p class="text-footer">created by <a class="strong" href="https://github.com/afuentes11" target="_blank">afuentes11</a> - devChallenges.io</p>    
   </footer>
-
+  <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
