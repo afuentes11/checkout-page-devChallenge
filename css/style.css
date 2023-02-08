@@ -629,7 +629,8 @@ a.strong:hover{
     
     .modal-content{
         width: 100vw;
-        height: 50vh;
+        height: 40vh;
+        border-radius: 2rem 2rem 0 0;
     }
 
     
