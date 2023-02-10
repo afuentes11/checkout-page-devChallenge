@@ -363,8 +363,8 @@ option:checked{
     margin: 5px;
     appearance: none;
     position: relative;
-    border: 2px solid #BDBDBD;
-    background-color: #fff;
+    border: 2px solid var(--gray-700);
+    background-color: var(white);
     border-radius: 15%;
     cursor: pointer;
     overflow: hidden;
@@ -375,8 +375,8 @@ option:checked{
     content: '';
     height: 0.7rem;
     width: .3rem;
-    border-bottom: .31rem solid #fff;
-    border-right: .31rem solid #fff;
+    border-bottom: .31rem solid var(--white);
+    border-right: .31rem solid var(--white);
     opacity: 0;
     transform: rotate(45deg) translate(-50%, -50%);
     position: absolute;
