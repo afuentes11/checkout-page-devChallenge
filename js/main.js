@@ -171,46 +171,75 @@ $("document").ready(function() {
 
         let valid = true;
 
+        const TIME_VALIDATION_ERROR = 10000; 
         // Validar los datos
         if(!validateEmail(email)){
             $("#e-mail").parent().addClass("input-invalid");
             $("label[for='e-mail']").addClass("input-invalid-label");
+            setTimeout(function(){
+                $("#e-mail").parent().removeClass("input-invalid");
+                $("label[for='e-mail']").removeClass("input-invalid-label");
+            },TIME_VALIDATION_ERROR)
             valid = false;
         }
 
         if(phone.length!==10){
             $("#phone").parent().addClass("input-invalid");
             $("label[for='phone']").addClass("input-invalid-label");
+            setTimeout(function(){
+                $("#phone").parent().removeClass("input-invalid");
+                $("label[for='phone']").removeClass("input-invalid-label");
+            },TIME_VALIDATION_ERROR)
             valid = false;
         }
 
         if(name.length===0){
             $("#name").parent().addClass("input-invalid");
             $("label[for='name']").addClass("input-invalid-label");
+            setTimeout(function(){
+                $("#name").parent().removeClass("input-invalid");
+                $("label[for='name']").removeClass("input-invalid-label");
+            },TIME_VALIDATION_ERROR)
             valid = false;
         }
 
         if(address.length===0){
             $("#address").parent().addClass("input-invalid");
             $("label[for='address']").addClass("input-invalid-label");
+            setTimeout(function(){
+                $("#address").parent().removeClass("input-invalid");
+                $("label[for='address']").removeClass("input-invalid-label");
+            },TIME_VALIDATION_ERROR)
             valid = false;
         }
 
         if(city.length===0){
             $("#city").parent().addClass("input-invalid");
             $("label[for='city']").addClass("input-invalid-label");
+            setTimeout(function(){
+                $("#city").parent().removeClass("input-invalid");
+                $("label[for='city']").removeClass("input-invalid-label");
+            },TIME_VALIDATION_ERROR)
             valid = false;
         }
 
         if(country.length===0){
             $("#country").parent().addClass("input-invalid");
             $("label[for='country']").addClass("input-invalid-label");
+            setTimeout(function(){
+                $("#country").parent().removeClass("input-invalid");
+                $("label[for='country']").removeClass("input-invalid-label");
+            },TIME_VALIDATION_ERROR)
             valid = false;
         }
 
         if(postal_code.length===0){
             $("#postal-code").parent().addClass("input-invalid");
             $("label[for='postal-code']").addClass("input-invalid-label");
+            setTimeout(function(){
+                $("#postal-code").parent().removeClass("input-invalid");
+                $("label[for='postal-code']").removeClass("input-invalid-label");
+            },TIME_VALIDATION_ERROR)
             valid = false;
         }        
 
