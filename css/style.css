@@ -22,31 +22,31 @@ body{
 
 
 /* CSS para Chrome y Safari */
-.body::-webkit-scrollbar, select::-webkit-scrollbar {
+.body::-webkit-scrollbar, .country::-webkit-scrollbar {
     width: 0.4em;
     background-color: var(--white);
 }
-.body::-webkit-scrollbar-thumb, select::-webkit-scrollbar-thumb {
+.body::-webkit-scrollbar-thumb, .country::-webkit-scrollbar-thumb {
     border-radius: 0.15em;
     background-color: var(--gray-200);
 }
 
 /* CSS para Firefox */
-.body::-moz-scrollbar, select::-moz-scrollbar   {
+.body::-moz-scrollbar, .country::-moz-scrollbar   {
     width: 0.4em;
     background-color: var(--white);
 }
-.body::-moz-scrollbar-thumb, select::-moz-scrollbar-thumb {
+.body::-moz-scrollbar-thumb, .country::-moz-scrollbar-thumb {
     border-radius: 0.15em;
     background-color: var(--gray-100);
 }
 
 /* CSS para Internet Explorer y Edge */
-.body::-ms-scrollbar, select::-ms-scrollbar {
+.body::-ms-scrollbar, .country::-ms-scrollbar {
     width: 0.4em;
     background-color: var(--white);
 }
-.body::-ms-scrollbar-thumb, select::-ms-scrollbar-thumb {
+.body::-ms-scrollbar-thumb, .country::-ms-scrollbar-thumb {
     border-radius: 0.15em;
     background-color: var(--gray-100);
 }
@@ -215,6 +215,22 @@ fieldset > .title{
     border-radius: 200rem;
 }
 
+.close-icon-modal{
+    font-size: 2rem;
+    top: 1rem;
+    right: 1rem;
+    position: absolute;
+    color: var(--gray-100);
+    cursor: pointer;
+    transition: .3s all;
+    transform-origin: center;
+}
+
+.close-icon-modal:hover{
+    transform: scale(1.1);
+}
+
+
 .icon-animate{
     animation: zoom-in 0.1s;
 }
@@ -307,11 +323,14 @@ fieldset > .title{
     z-index: 1;
     border: none;
     transition: all 0.5s;
+    overflow-y: scroll;
+    background-color: var(--white);
+    pointer-events: none;
 }
 
 .show-country{
     height: 200%;
-    
+    pointer-events: all;
 }
 
 option{
@@ -324,7 +343,7 @@ option{
 
 option:checked{
     background-color: var(--orange);
-    color: var(--gray-600); 
+    color: var(--white); 
 }
 
 .label-checkbox{
@@ -442,7 +461,6 @@ option:checked{
 }
 
 .item-img{
-    width: 45%;
     min-width: 7.5rem;
     border-radius: 0.75rem;
 }
@@ -506,11 +524,20 @@ option:checked{
 }
 
 .quantity-text{
-    flex-grow: 1;
-    display: flex;
-    justify-content:center;
     transform-origin: center;
     color: var(--gray-100);
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 1.2rem;
+    text-align: center;
+    width: 100%;
+    border: none;
+    background-color: transparent
+}
+
+.quantity-text:focus, .quantity-text:active {
+    border: none;
+    outline: none;
 }
 
 .quantity-text-animate-zero{

@@ -1,5 +1,7 @@
 $("document").ready(function() {
+    //precio del envio
     const SHIPPING_VALUE = 19;
+
     // permite ejecutar una animacion cada vez que se requiera
     function toggleAnimateClass(className, select, self) {
         select.removeClass(className);
@@ -8,24 +10,38 @@ $("document").ready(function() {
         }.bind(self), 0);
     }
 
-
+    var timeoutIds = [];
     function openModal(selector){
         $(".body").addClass("modal-open-body");
         $(selector).addClass("modal-open");
         $(".modal-content").addClass("modal-content-animate")
-        setTimeout(function() {
+        var timeoutId = setTimeout(function() {
             $(".modal-content").removeClass("modal-content-animate");
             setTimeout(function() {
                 $(".body").removeClass("modal-open-body");
                 $(selector).removeClass("modal-open");
             }, 500)
-        }, 3000);
+        }, 5000);
+        timeoutIds.push(timeoutId)
     }
 
+    $(".close-icon-modal").click(function() {
+        $(".modal-content").removeClass("modal-content-animate");
+            setTimeout(function() {
+                $(".body").removeClass("modal-open-body");
+                $(".modal-valid").removeClass("modal-open");
+                $(".modal-invalid").removeClass("modal-open");
+            }, 500)
+        timeoutIds.forEach(timeoutId => {
+            clearTimeout(timeoutId);
+        });
+        timeoutIds = [];
+    })
+
     $('.input-icon-container span, .input-icon-container button, .input-icon-container').click(function() {
-        $(this).closest('.input-icon-container').find('input').focus()
-        $(this).closest('.input-icon-container').find('input').parent().removeClass("input-invalid");
-        let idInput = $(this).closest('.input-icon-container').find('input').attr("id")
+        $(this).closest('.input-icon-container').find('.input').focus()
+        $(this).closest('.input-icon-container').find('.input').parent().removeClass("input-invalid");
+        let idInput = $(this).closest('.input-icon-container').find('.input').attr("id")
         $("label[for='" + idInput + "']").removeClass("input-invalid-label")
     });
 
@@ -63,7 +79,59 @@ $("document").ready(function() {
         })
     })
 
+    function totalUpdate(){
+        // array con el contenido de todas las etiquetas que tienen la clase discounted 
+        const valuesItems = $(".dicounted").map(function(){
+            return parseFloat($(this).text())
+        }).get();
 
+        // array con el contenido de todas las etiquetas que tienen la clase quantity-text
+        const quantityItems = $(".quantity-text").map(function(){
+            return parseInt($(this).val())
+        }).get();
+
+        //evalua si no hay ningun item en el carrito
+        const noItemExists = quantityItems.every(function(item){
+            return item === 0;
+        })
+
+        if(noItemExists){
+            $(".shipping").text(0)
+        }else{
+            $(".shipping").text(SHIPPING_VALUE)
+        }
+
+        // multiplicacion de arrays indice a indice
+        const totalByItem = valuesItems.map(function(value, index){
+            return value * quantityItems[index];
+        })
+
+        const shippingTotal = parseInt($(".shipping").text())
+
+        // suma todos los valores de un array
+        let total = shippingTotal + totalByItem.reduce(function(acc, value){
+                return acc + value
+            })
+
+        $(".total").text(total.toFixed(2));
+    } 
+
+    $(".quantity-text").change(function() {
+
+        let number = $(this).val();
+        
+        function validateQuantity(number) {
+            var re = /^\d+$/;
+            return re.test(number);
+        }
+
+        if(parseInt(number) < 0 || ! validateQuantity(number)){
+            $(this).val(1);
+            toggleAnimateClass("quantity-text-animate-zero", $(this), this)
+        }
+
+        totalUpdate();
+    });
 
     $(".icon-cart-item").each(function () { //la funcion itera en cada componente que que usa la clase .icon-cart-item
         $(this).click(function() { //evalua en cual se hizo click.
@@ -72,53 +140,20 @@ $("document").ready(function() {
             toggleAnimateClass("icon-animate", $(this), this)
             
             let buttonClass = $(this).attr("class"); // extrae las clases
-            let value = $(this).siblings(".quantity-text").text(); // estrae el contenido de su etiqueta hermana
+            let value = $(this).siblings(".quantity-text").val(); // estrae el contenido de su etiqueta hermana
             if (buttonClass.includes("add")){ //evalua si el boton añade
-                $(this).siblings(".quantity-text").text(parseInt(value)+1) // aumenta en 1 el contenido de su etiqueta hermana
+                $(this).siblings(".quantity-text").val(parseInt(value)+1) // aumenta en 1 el contenido de su etiqueta hermana
             }else if(buttonClass.includes("remove")){ //evalua si el boton sustrae
                 // disminuye en 1 el contenido de su etiqueta hermana
                 if(parseInt(value) === 1 || parseInt(value) === 0){
-                    $(this).siblings(".quantity-text").text(0);
+                    $(this).siblings(".quantity-text").val(0);
                     toggleAnimateClass("quantity-text-animate-zero", $(this).siblings(".quantity-text"), this)
                 }else{
-                    $(this).siblings(".quantity-text").text(parseInt(value)-1);
+                    $(this).siblings(".quantity-text").val(parseInt(value)-1);
                 }
             }
 
-            // array con el contenido de todas las etiquetas que tienen la clase discounted 
-            const valuesItems = $(".dicounted").map(function(){
-                return parseFloat($(this).text())
-            }).get();
-
-            // array con el contenido de todas las etiquetas que tienen la clase quantity-text
-            const quantityItems = $(".quantity-text").map(function(){
-                return parseInt($(this).text())
-            }).get();
-
-            //evalua si no hay ningun item en el carrito
-            const noItemExists = quantityItems.every(function(item){
-                return item === 0;
-            })
-
-            if(noItemExists){
-                $(".shipping").text(0)
-            }else{
-                $(".shipping").text(SHIPPING_VALUE)
-            }
-
-            // multiplicacion de arrays indice a indice
-            const totalByItem = valuesItems.map(function(value, index){
-                return value * quantityItems[index];
-            })
-
-            const shippingTotal = parseInt($(".shipping").text())
-
-            // suma todos los valores de un array
-            let total = shippingTotal + totalByItem.reduce(function(acc, value){
-                    return acc + value
-                })
-
-            $(".total").text(total.toFixed(2));
+            totalUpdate()
         })
     })
 
@@ -177,8 +212,7 @@ $("document").ready(function() {
             $("#postal-code").parent().addClass("input-invalid");
             $("label[for='postal-code']").addClass("input-invalid-label");
             valid = false;
-        }
-        
+        }        
 
         // Si la validación es exitosa, enviar el formulario
         if(valid){
@@ -187,8 +221,6 @@ $("document").ready(function() {
             openModal(".modal-invalid");
         }
         
-
-
         function validateEmail(email) {
             var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
             return re.test(email.toLowerCase());

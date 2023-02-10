@@ -15,7 +15,11 @@
 <body class="body">
   
   <div class="modal-error modal-valid">
+    
     <div class="modal-content">
+      <span class="material-icons-round close-icon-modal">
+        close
+        </span>
       <span class="material-icons-round icon-valid">
         thumb_up
       </span>
@@ -24,7 +28,11 @@
   </div>
 
   <div class="modal-error modal-invalid">
+    
     <div class="modal-content">
+      <span class="material-icons-round close-icon-modal">
+        close
+        </span>
       <span class="material-icons-round icon-invalid">
         thumb_down_alt
       </span>
@@ -89,17 +97,23 @@
                   public
                 </span>
                 <input type="text" id="country" class="input" placeholder="Your country.." readonly>
-                <select name="country" class="country" multiple>
-                  <option value="Argentina">Argentina</option>
-                  <option value="Brasil">Brasil</option>
-                  <option value="Chile">Chile</option>
-                  <option value="Colombia">Colombia</option>
-                  <option value="Ecuador">Ecuador</option>
-                  <option value="Mexico">Mexico</option>
-                  <option value="Peru">Peru</option>
-                  <option value="Uruguay">Uruguay</option>
-                  <option value="Venezuela">Venezuela</option>
-                </select>
+                <div class="country">
+                  <option value="Argentina">🇦🇷 Argentina</option>
+                  <option value="Australia">🇦🇺 Australia</option>
+                  <option value="Brasil">🇧🇷 Brasil</option>
+                  <option value="Canadá">🇨🇦 Canadá</option>
+                  <option value="China">🇨🇳 China</option>
+                  <option value="Dinamarca">🇩🇰 Dinamarca</option>
+                  <option value="Francia">🇫🇷 Francia</option>
+                  <option value="Alemania">🇩🇪 Alemania</option>
+                  <option value="Grecia">🇬🇷 Grecia</option>
+                  <option value="Hungría">🇭🇺 Hungría</option>
+                  <option value="India">🇮🇳 India</option>
+                  <option value="Indonesia">🇮🇩 Indonesia</option>
+                  <option value="Italia">🇮🇹 Italia</option>
+                  <option value="Japón">🇯🇵 Japón</option>
+                  <option value="Corea del Sur">🇰🇷 Corea del Sur</option>
+                </div>
                 <button type="button" class="material-icons-round arrow_down-icon">
                   keyboard_arrow_down
                 </button>
@@ -138,7 +152,7 @@
               <button class="material-icons-round icon-cart-item remove">
                 remove
               </button>
-              <p class="quantity-text">1</p>
+              <input type="tel" class="quantity-text" value="1">
               <button class="material-icons-round icon-cart-item add">
                 add
               </button>
@@ -160,7 +174,7 @@
               <button class="material-icons-round icon-cart-item remove">
                 remove
               </button>
-              <p class="quantity-text">1</p>
+              <input type="tel" class="quantity-text" value="1">
               <button class="material-icons-round icon-cart-item add">
                 add
               </button>
