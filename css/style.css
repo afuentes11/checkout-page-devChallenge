@@ -18,10 +18,11 @@ body{
     max-width: 940px;
     margin: 0 auto;
     padding: 4rem 1rem 0;
+    background-color: var(--white);
 }
 
 
-/* CSS para Chrome y Safari */
+/* CSS para Chrome y Safarif */
 .body::-webkit-scrollbar, .country::-webkit-scrollbar {
     width: 0.4em;
     background-color: var(--white);
