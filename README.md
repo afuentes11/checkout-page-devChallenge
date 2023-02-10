@@ -40,7 +40,7 @@
    <img src="https://github.com/afuentes11/checkout-page-devChallenge/blob/master/img/gif%20mobile.gif" alt="css3" width="35%" />
 </div>
 
-The project consists of the creation of a responsive checkout page for an online shop. [The original design](https://www.figma.com/file/HHzg6Ywq8jamFTB0J4iXKM?chrome=DOCUMENTATION&embed_host=astra&kind=&node-id=0%3A1&viewer=1) was provided by Devchallenges in the challenge.
+The project consists of the creation of a responsive checkout page for an online shop. [The original design](https://www.figma.com/file/4B0x88GhiZvgVlcQPSQ73D?chrome=DOCUMENTATION&embed_host=astra&kind=&node-id=0%3A1&viewer=1) was provided by Devchallenges in the challenge.
 
 The page can be viewed at the following [link](https://afuentes11.github.io/checkout-page-devChallenge/). If you liked the project, give me a star ⭐.
 
